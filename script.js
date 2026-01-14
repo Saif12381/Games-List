@@ -1,31 +1,32 @@
 console.log("js console");
 
-let data;
-let grid=document.querySelector(".grid-container");
+var data;
+var grid=document.querySelector(".grid-container");
 
-var xttp = new XMLHttpRequest();
+var xhttp = new XMLHttpRequest();
 
-XMLHttpRequest.onreadystatechange = function(){
+xhttp.onreadystatechange = function(){
+    console.log("start request");
     if(this.readyState == 4 && this.status == 200) {
 
-        data = JSON.parse(XMLHttpRequest.responseText);
+        data = JSON.parse(xhttp.responseText);
         console.log(data);
 
-        data.forEach(function(game){
+        data.forEach(function(movie){
         let card = document.createElement("div");
         card.classList.add("card");
     
         let textData = 
-        "<div class='game-title'>" + game.title + "</div>" + 
-        "<span>" + "Publisher: " + game.publisher + "<br>" + 
-        " Release Date: " + game.releaseData + "<br>" + 
+        "<div class='movie-title'>" + movie.title + "</div>" + 
+        "<span>" + "Cast: " + movie.cast + "<br>" + 
+        " Release Date: " + movie.year + "<br>" + 
         "Needs Research: " + 
         "</span>";
         
         card.innerHTML = textData;
     
-        if(game.imgSrc){
-            card.style.backgroundImage = "url('" + game.imgSrc + "')";
+        if(movie.imgSrc){
+            card.style.backgroundImage = "url('" + movie.imgSrc + "')";
         }
 
         grid.appendChild(card); 
@@ -34,5 +35,5 @@ XMLHttpRequest.onreadystatechange = function(){
 }
 };
 
-xhttp.open("GET", "gamedata.json", true);
+xhttp.open("GET", "movies.json", true);
 xhttp.send();
