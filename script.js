@@ -11,6 +11,7 @@ xhttp.onreadystatechange = function(){
 
         data = JSON.parse(xhttp.responseText);
         console.log(data);
+        localStorage.setItem("dataList", JSON.stringify(data));
 
         data.forEach(function(movie){
         let card = document.createElement("div");
