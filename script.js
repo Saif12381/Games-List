@@ -38,3 +38,21 @@ xhttp.onreadystatechange = function(){
 
 xhttp.open("GET", "movies.json", true);
 xhttp.send();
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    let title = titleInput.value;
+    let publisher = devInput.value;
+    let releaseData = releaseDataInput.value;
+    let gifSrc = gifInput.value;
+    let imgSrc = imgInput.value;
+    let newObj = {
+        "id":getNextId(),
+        "title":title,
+        "publisher":publisher,
+        "releaseData":releaseData,
+        "imgSrc":imgSrc,
+        "gifSrc":gifSrc };
+        submitData(newObj);
+        form.reset();
+});
