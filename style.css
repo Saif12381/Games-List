@@ -4,6 +4,11 @@ body {
   border: 2px solid rgb(0, 0, 0);
 }
 
+.web-title {
+text-align: center;
+font-size:70px;
+}
+
 
 
 
@@ -51,14 +56,15 @@ body {
 /*Form CSS taken from w3schools*/
 form {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #333;
   padding: 20px;
-  color:black;
+  color:rgb(255, 0, 0);
   font-size:x-large;
   text-align: left;
   width:40%;
   margin-left: auto;
   margin-right: auto;
+  margin-top:20px;
 }
 
 
@@ -77,7 +83,7 @@ input[type=text], select {
 
 input[type=submit] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: rgb(255, 0, 0);
   color: rgb(0, 0, 0);
   padding: 14px;
   margin: 8px 0;
@@ -87,5 +93,5 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #ffffff;
 }

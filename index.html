@@ -7,14 +7,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="topnav">
-  <a class="active" href="index.html">Home</a>
-  <a href="form.html">Add New Movie</a>
-</div>
-<h1>Movies from the 2000's</h1>
+
+<h1 class="web-title">Movies from the 2000's</h1>
 <div class="grid-container"></div>
 
+<form action="/action_page.php" id="form">
+  <label for="fname">Movie Title:</label><br>
+  <input type="text" id="fname" name="title" ><br>
+
+  <label for="lname">Release Date:</label><br>
+  <input type="text" id="year" name="year" ><br>
+
+  <label for="lname">Cast:</label><br>
+  <input type="text" id="cast" name="cast" ><br>
+
+  <label for="lname">Genre(s):</label><br>
+  <input type="text" id="genre" name="genre" ><br>
+
+  <label for="lname">Movie Poster:</label><br>
+  <input type="text" id="imagemovie" name="poster" ><br>
+
+
+  
+  <input type="submit" value="Submit">
+</form>
 
 <script src="script.js"></script>
 </body>
