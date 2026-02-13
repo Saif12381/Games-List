@@ -1,9 +1,18 @@
+
 console.log("js console");
 
 var data;
 var grid=document.querySelector(".grid-container");
 
-var xhttp = new XMLHttpRequest();
+if (localStorage.getItem("dataList")) {
+  data = JSON.parse(localStorage.getItem("dataList"));
+  console.log("Loaded from localStorage");
+  if (grid) {
+    makeCards();
+  }
+} else {
+  var xhttp = new XMLHttpRequest();
+
 
 xhttp.onreadystatechange = function(){
     console.log("start request");
@@ -12,8 +21,16 @@ xhttp.onreadystatechange = function(){
         data = JSON.parse(xhttp.responseText);
         console.log(data);
         localStorage.setItem("dataList", JSON.stringify(data));
+        makeCards();
+}
+};
+xhttp.open("GET", "movies.json", true);
+xhttp.send();
+}
 
-        data.forEach(function(movie){
+
+function makeCards() {
+            data.forEach(function(movie){
         let card = document.createElement("div");
         card.classList.add("card");
     
@@ -32,27 +49,34 @@ xhttp.onreadystatechange = function(){
 
         grid.appendChild(card); 
         });
-    
 }
-};
-
-xhttp.open("GET", "movies.json", true);
-xhttp.send();
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
-    let title = titleInput.value;
-    let publisher = devInput.value;
-    let releaseData = releaseDataInput.value;
-    let gifSrc = gifInput.value;
-    let imgSrc = imgInput.value;
+    let title = document.getElementById("fname").value;
+    let year = document.getElementById("year").value;
+    let cast = document.getElementById("cast").value;
+    let genre = document.getElementById("genre").value;
+    let imgSrc = document.getElementById("imagemovie").value;
     let newObj = {
-        "id":getNextId(),
-        "title":title,
-        "publisher":publisher,
-        "releaseData":releaseData,
-        "imgSrc":imgSrc,
-        "gifSrc":gifSrc };
+        title:title,
+        cast:cast,
+        year:year,
+        genre:genre,    
+        imgSrc:imgSrc
+    };
+    data.push(newObj);
+  localStorage.setItem("dataList", JSON.stringify(data));
+  console.log("Saved new item to localStorage");
+
+  // Only render if grid exists on this page
+  if (document.querySelector(".grid-container")) {
+    grid.innerHTML = ""; // Clear existing cards
+    console.log("Cleared existing cards");
+    makeCards();
+  }
+    console.log("Added new movie card");
         submitData(newObj);
         form.reset();
+
 });

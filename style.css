@@ -95,3 +95,8 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #ffffff;
 }
+
+.card span {
+background-color:#000000;
+opacity:70%;
+}
